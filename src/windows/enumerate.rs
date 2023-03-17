@@ -273,10 +273,8 @@ impl PortDevice {
             )
         };
 
-        if res == FALSE {
-            if unsafe { GetLastError() } != ERROR_INSUFFICIENT_BUFFER {
-                return None;
-            }
+        if res == FALSE && unsafe { GetLastError() } != ERROR_INSUFFICIENT_BUFFER {
+            return None;
         }
 
         // Using the unicode version of 'SetupDiGetDeviceRegistryProperty' seems to report the
